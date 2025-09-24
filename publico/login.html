@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SaberOnline</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>SaberOnline</h1>
+            <p>Faça login para ter acesso aos cursos</p>
+
+            <p id="mensagem-erro" class="mensagem-erro" style="display: none;">
+                Usuário ou senha inválidos. Tente novamente.
+            </p>
+
+            <form action="/autenticar" method="POST">
+                <div class="input-group">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario" name="usuario" required placeholder="aluno">
+                </div>
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required placeholder="123">
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('erro')) {
+            const mensagemErro = document.getElementById('mensagem-erro');
+            mensagemErro.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

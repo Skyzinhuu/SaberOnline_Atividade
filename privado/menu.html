@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Curso - SaberOnline</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SaberOnline</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="detalhes-container">
+            <h2 id="curso-titulo">Carregando...</h2>
+            <p id="curso-descricao"></p>
+            
+            <div class="info-grid">
+                <p><strong>Instrutor:</strong> <span id="curso-instrutor"></span></p>
+                <p><strong>Carga Horária:</strong> <span id="curso-carga"></span></p>
+                <p><strong>Nível:</strong> <span id="curso-nivel"></span></p>
+                <p><strong>Vagas Restantes:</strong> <span id="curso-vagas"></span></p>
+            </div>
+
+            <div class="compra-box">
+                <p class="preco-detalhe">Valor (por pessoa): R$ <span id="curso-preco">0.00</span></p>
+                <div class="input-group">
+                    <label for="quantidade">Quantidade de Vagas:</label>
+                    <input type="number" id="quantidade" value="1" min="1">
+                </div>
+                <div class="total">
+                    <h3>Valor Total: R$ <span id="valor-total">0.00</span></h3>
+                </div>
+            </div>
+             <a href="/" class="btn-voltar">Voltar</a>
+        </div>
+    </main>
+    
+    <script src="/js/detalhes.js"></script>
+</body>
+</html>

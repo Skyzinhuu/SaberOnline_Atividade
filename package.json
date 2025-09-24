@@ -1,0 +1,17 @@
+{
+  "name": "saberonline",
+  "version": "1.0.0",
+  "description": "Site de vendas de cursos online.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.6.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaberOnline - Cursos</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo-area">
+                <h1>SaberOnline</h1>
+                <p>Sua plataforma para um melhor aprendizado em programação</p>
+            </div>
+            <div id="auth-button-container"></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Cursos Disponíveis</h2>
+        <div class="cursos-grid">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SaberOnline. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function carregarCursos() {
+            const cursosGrid = document.querySelector('.cursos-grid');
+            
+            fetch('/cursos')
+                .then(response => response.json())
+                .then(cursos => {
+                    cursosGrid.innerHTML = ''; 
+                    
+                    if (cursos.length === 0) {
+                        cursosGrid.innerHTML = '<p>Nenhum curso disponível no momento.</p>';
+                        return;
+                    }
+
+                    cursos.forEach(curso => {
+                        const card = `
+                            <div class="curso-card">
+                                <h3>${curso.titulo}</h3>
+                                <p><strong>Descrição:</strong> ${curso.descricao || 'Não informado'}</p>
+                                <p><strong>Instrutor:</strong> ${curso.instrutor || 'Não informado'}</p>
+                                <p><strong>Duração:</strong> ${curso.carga_horaria || 'Não informada'}</p>
+                                <p><strong>Nível:</strong> ${curso.nivel || 'Não informado'}</p> 
+                                <p><strong>Vagas:</strong> ${curso.vagas || 'Não informado'}</p>
+                                <p class="preco">R$ ${parseFloat(curso.preco).toFixed(2).replace('.', ',')}</p>
+                                <a href="/menu?curso=${curso.id}" class="btn">Ver Detalhes</a>
+                            </div>
+                        `;
+                        cursosGrid.innerHTML += card;
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar cursos:', error);
+                    cursosGrid.innerHTML = '<p>Nenhum curso disponivel no momento, em breve novidades.</p>';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/auth-status')
+                .then(response => response.json())
+                .then(data => {
+                    const buttonContainer = document.getElementById('auth-button-container');
+                    if (data.loggedIn) {
+                        buttonContainer.innerHTML = `
+                            <a href="/gerenciar" class="btn btn-info me-2">Gerenciar Cursos</a>
+                            <a href="/logout" class="btn-header">Sair (Logoff)</a>
+                        `;
+                    } else {
+                        buttonContainer.innerHTML = '<a href="/login.html" class="btn-header">Fazer Login</a>';
+                    }
+                });
+
+            carregarCursos();
+        });
+    </script>
+</body>
+</html>
