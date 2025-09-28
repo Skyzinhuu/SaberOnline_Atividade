@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erro ao buscar detalhes sobre o curso:', error);
             });
     } else {
-        document.getElementById('curso-titulo').textContent = "ID do curso não fo fornecido.";
+        document.getElementById('curso-titulo').textContent = "ID do curso não foi fornecido.";
     }
 });
